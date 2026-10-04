@@ -1,0 +1,37 @@
+{
+  "name": "chemql",
+  "displayName": "ChemQL Syntax Highlighting",
+  "description": "Rich syntax support for the ChemQL scripting language.",
+  "version": "0.0.5",
+  "publisher": "Rakibul",
+  "icon": "./logo.png",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "chemql",
+      "aliases": ["ChemQL", "chemql", "Chemql"],
+      "extensions": [
+        ".chemql",
+        ".cql"
+      ],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "chemql",
+      "scopeName": "source.chemql",
+      "path": "./syntaxes/chemql.tmLanguage.json"
+    }],
+    "iconThemes": [{
+      "id": "chemql-file-icons",
+      "label": "ChemQL File Icons",
+      "path": "./chemql-icon-theme.json"
+    }]
+  }
+
+}

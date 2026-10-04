@@ -1,0 +1,11 @@
+{
+  "iconDefinitions": {
+    "chemql": {
+      "iconPath": "./logo.png"
+    }
+  },
+  "fileExtensions": {
+    "cql": "chemql",
+    "chemql": "chemql"
+  }
+}

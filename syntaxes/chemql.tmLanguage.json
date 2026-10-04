@@ -1,0 +1,182 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ChemQL",
+  "scopeName": "source.chemql",
+  "patterns": [
+    { "include": "#endblock" },
+    { "include": "#embedded" },
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#number-with-unit" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#commands" },
+    { "include": "#control-flow" },
+    { "include": "#boolean-none" },
+    { "include": "#conditions" },
+    { "include": "#sources" },
+    { "include": "#property-keys" }
+  ],
+  "repository": {
+    "embedded": {
+      "patterns": [
+        {
+          "name": "meta.embedded.chemql-expression",
+          "begin": "\\{\\{",
+          "beginCaptures": {
+            "0": { "name": "punctuation.section.embedded.begin.chemql" }
+          },
+          "end": "\\}\\}",
+          "endCaptures": {
+            "0": { "name": "punctuation.section.embedded.end.chemql" }
+          },
+          "patterns": [ { "include": "#chemql-expression" } ]
+        },
+        {
+          "name": "meta.embedded.python.chemql",
+          "begin": "\\[",
+          "beginCaptures": {
+            "0": { "name": "punctuation.section.python.begin.chemql" }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": { "name": "punctuation.section.python.end.chemql" }
+          },
+          "patterns": [
+            { "include": "#embedded-query" },
+            { "include": "source.python" }
+          ]
+        }
+      ]
+    },
+    "embedded-query": {
+      "patterns": [
+        {
+          "name": "meta.embedded.chemql-query",
+          "begin": "\\{\\{",
+          "beginCaptures": {
+            "0": { "name": "punctuation.section.embedded.begin.chemql" }
+          },
+          "end": "\\}\\}",
+          "endCaptures": {
+            "0": { "name": "punctuation.section.embedded.end.chemql" }
+          },
+          "patterns": [ { "include": "#chemql-expression" } ]
+        }
+      ]
+    },
+    "chemql-expression": {
+      "patterns": [
+        { "include": "#comments" },
+        { "include": "#strings" },
+        { "include": "#number-with-unit" },
+        { "include": "#numbers" },
+        { "include": "#operators" },
+        { "include": "#commands" },
+        { "include": "#control-flow" },
+        { "include": "#boolean-none" },
+        { "include": "#conditions" },
+        { "include": "#sources" },
+        { "include": "#property-keys" }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.chemql", "match": "//.*$" }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.chemql",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [ { "name": "constant.character.escape.chemql", "match": "\\\\." } ]
+        },
+        {
+          "name": "string.quoted.single.chemql",
+          "begin": "'",
+          "end": "'",
+          "patterns": [ { "name": "constant.character.escape.chemql", "match": "\\\\." } ]
+        }
+      ]
+    },
+    "endblock": {
+      "patterns": [
+        {
+          "name": "meta.control.block-end.chemql",
+          "match": "(\\[)(\\s*)(endblock)(\\s*)(\\])",
+          "captures": {
+            "1": { "name": "punctuation.section.block.begin.chemql" },
+            "3": { "name": "keyword.control.chemql" },
+            "5": { "name": "punctuation.section.block.end.chemql" }
+          }
+        }
+      ]
+    },
+    "number-with-unit": {
+      "patterns": [
+        {
+          "name": "constant.numeric.chemql",
+          "match": "(?i)(?<![A-Za-z0-9_.])[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)\\s*(?:°\\s*[cfk]|[cfk]|pa|bar|atm|n/m\\^?2|nm\\^-2)(?![A-Za-z0-9_])"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        { "name": "constant.numeric.chemql", "match": "\\b\\d+(\\.\\d+)?\\b" }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        { "name": "keyword.operator.comparison.chemql", "match": ">=|<=|=|>|<" },
+        {
+          "name": "keyword.operator.word.chemql",
+          "match": "\\b(and|or|has|like)\\b|like!|\\b(sort|limit|count|asc|desc)\\b"
+        }
+      ]
+    },
+    "commands": {
+      "patterns": [
+        {
+          "name": "keyword.other.command.chemql",
+          "match": "\\b(search|source|list|clear|exit|return|findel|findmol|findre|set|add|remove|react|conditions|view|help|dump)\\b"
+        }
+      ]
+    },
+    "control-flow": {
+      "patterns": [
+        {
+          "name": "keyword.control.chemql",
+          "match": "\\b(if|elif|else|for|while|in|break|continue|endblock)\\b"
+        }
+      ]
+    },
+    "boolean-none": {
+      "patterns": [
+        { "name": "constant.language.chemql", "match": "\\b(True|False|None)\\b" }
+      ]
+    },
+    "conditions": {
+      "patterns": [
+        {
+          "name": "storage.type.condition.chemql",
+          "match": "(?i)\\b(temperature|pressure|catalyst|catalysts|standard|room|c|f|k|pa|bar)\\b"
+        }
+      ]
+    },
+    "sources": {
+      "patterns": [
+        { "name": "support.class.source.chemql", "match": "\\b(elements|molecules|reactions)\\b" }
+      ]
+    },
+    "property-keys": {
+      "patterns": [
+        {
+          "name": "support.type.property-name.chemql",
+          "match": "\\b(name|appearance|atomic_mass|boil|category|density|discovered_by|melt|molar_heat|named_by|number|period|group|phase|source|bohr_model_image|bohr_model_3d|spectral_img|summary|symbol|xpos|ypos|wxpos|wypos|shells|electron_configuration|electron_configuration_semantic|electron_affinity|electronegativity_pauling|ionization_energies|cpk-hex|image|block|formula|elements|molecular_weight|iupac_name|smiles|cid|melting_point|boiling_point|state|bonds|total_bond_energy|id|equation|reaction_type|reversible|reactants|products|conditions|notes)\\b"
+        }
+      ]
+    }
+  }
+}
