@@ -1,0 +1,107 @@
+{
+  "Search elements": {
+    "prefix": "search-elements",
+    "body": [
+      "search elements name like \"${1}*\" return ${2:name, symbol, atomic_mass}"
+    ],
+    "description": "Search periodic-table elements."
+  },
+  "Search molecules": {
+    "prefix": "search-molecules",
+    "body": [
+      "search molecules name like \"${1}*\" return ${2:name, formula, molecular_weight}"
+    ],
+    "description": "Search molecule records."
+  },
+  "Search reactions": {
+    "prefix": "search-reactions",
+    "body": [
+      "search reactions name like \"${1}*\" return ${2:name, equation}"
+    ],
+    "description": "Search reaction records."
+  },
+  "Balance reaction": {
+    "prefix": "balance",
+    "body": [
+      "balance \"${1:H2 + O2 -> H2O}\""
+    ],
+    "description": "Balance a chemical equation."
+  },
+  "Python block": {
+    "prefix": "pyblock",
+    "body": [
+      "[",
+      "\t$0",
+      "]"
+    ],
+    "description": "Insert a Python expression or block."
+  },
+  "Multiline Python block": {
+    "prefix": "pymultiline",
+    "body": [
+      "[[[",
+      "\t$0",
+      "]]]"
+    ],
+    "description": "Insert a multiline Python block."
+  },
+  "Embedded query": {
+    "prefix": "query",
+    "body": [
+      "{{ ${1:search elements symbol = \"O\" return name} }}"
+    ],
+    "description": "Embed a ChemQL query in Python."
+  },
+  "If block": {
+    "prefix": "ifblock",
+    "body": [
+      "if ${1:condition}",
+      "\t$0",
+      "endif"
+    ],
+    "description": "Insert a ChemQL if block."
+  },
+  "For block": {
+    "prefix": "forblock",
+    "body": [
+      "for ${1:item} in ${2:items}",
+      "\t$0",
+      "endfor"
+    ],
+    "description": "Insert a ChemQL for block."
+  },
+  "While block": {
+    "prefix": "whileblock",
+    "body": [
+      "while ${1:condition}",
+      "\t$0",
+      "endwhile"
+    ],
+    "description": "Insert a ChemQL while block."
+  },
+  "Namespace": {
+    "prefix": "namespace",
+    "body": [
+      "namespace ${1:name}",
+      "\t$0",
+      "endnamespace"
+    ],
+    "description": "Insert a namespace."
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Name}",
+      "\t$0",
+      "endstruct"
+    ],
+    "description": "Insert a struct declaration."
+  },
+  "Define constant": {
+    "prefix": "define",
+    "body": [
+      "define ${1:NAME} ${2:value}"
+    ],
+    "description": "Define a preprocessor value."
+  }
+}

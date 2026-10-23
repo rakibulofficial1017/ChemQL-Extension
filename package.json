@@ -1,0 +1,71 @@
+{
+  "name": "chemql",
+  "displayName": "ChemQL Language Support",
+  "description": "Syntax highlighting, IntelliSense, snippets, and language configuration for ChemQL.",
+  "version": "0.1.0",
+  "publisher": "Rakibul",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rakibulofficial1017/ChemQL-Extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rakibulofficial1017/ChemQL-Extension/issues"
+  },
+  "homepage": "https://github.com/rakibulofficial1017/ChemQL-Extension#readme",
+  "main": "./extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "chemql",
+    "chemistry",
+    "language",
+    "syntax-highlighting"
+  ],
+  "files": [
+    "extension.js",
+    "language-configuration.json",
+    "syntaxes/**",
+    "snippets/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "activationEvents": [
+    "onLanguage:chemql"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "chemql",
+        "aliases": [
+          "ChemQL",
+          "chemql"
+        ],
+        "extensions": [
+          ".chemql",
+          ".cql"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "chemql",
+        "scopeName": "source.chemql",
+        "path": "./syntaxes/chemql.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "chemql",
+        "path": "./snippets/chemql.json"
+      }
+    ]
+  }
+}
